@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- <link rel="icon" href="../../favicon.ico"> -->
+
+  <title>贝格尔循环赛编排</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <!-- <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
+
+  <!-- Custom styles for this template -->
+  <link href="./main.css" rel="stylesheet">
+
+  <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+  <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+  <!-- <script src="../../assets/js/ie-emulation-modes-warning.js"></script> -->
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+          aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a class="navbar-brand" href="#">贝格尔循环赛编排</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">算法概述</a></li>
+          <li><a href="#">逆贝格尔</a></li>
+          <li><a href="#">帮助</a></li>
+        </ul>
+        <!-- <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form> -->
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3 col-md-2 sidebar">
+        <div class="row add-game">
+          <h4 class="title">添加一场新比赛</h4>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="请输入比赛名称">
+            <span class="input-group-btn">
+                  <button class="btn btn-default" type="button">添加</button>
+                </span>
+          </div>
+        </div>
+        <div class="existed-game row">
+          <h4 class="title">已加入的比赛</h4>
+          <ul class="nav nav-pills nav-stacked nav-tabs">
+            <li class="active"><a href="#panes_1" aria-controls="panes_1" role="tab" data-toggle="tab">马老师水友赛(示例)<span class="sr-only">(current)</span></a></li>
+            <li class=""><a href="#panes_2" aria-controls="panes_2" role="tab" data-toggle="tab">西甲联赛(示例)</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="tab-content">
+        <div role="tanpanel" id="panes_1" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main tab-pane active">
+          <div class="all-team">
+            <h1 class="page-header">参赛队伍/共<span>n</span>队</h1>
+            <div class="row placeholders">
+              <div class="col-xs-6 col-sm-2 placeholder">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive"
+                  alt="Generic placeholder thumbnail">
+                <h4>皮皮螃战队</h4>
+                <div class="height_20"></div>
+                <a class="text-muted modify"><span class="glyphicon glyphicon-pencil"></span> 修改</a>
+                <a class="text-muted remove"><span class="glyphicon glyphicon-remove"></span> 删除</a>
+              </div>
+              <div class="col-xs-6 col-sm-2 placeholder">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive"
+                  alt="Generic placeholder thumbnail">
+                <h4>得了急战队</h4>
+                <div class="height_20"></div>
+                <a class="text-muted modify"><span class="glyphicon glyphicon-pencil"></span> 修改</a>
+                <a class="text-muted remove"><span class="glyphicon glyphicon-remove"></span> 删除</a>
+              </div>
+              <div class="col-xs-6 col-sm-2 placeholder">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive"
+                  alt="Generic placeholder thumbnail">
+                <h4>任里皮战队</h4>
+                <div class="height_20"></div>
+                <a class="text-muted modify"><span class="glyphicon glyphicon-pencil"></span> 修改</a>
+                <a class="text-muted remove"><span class="glyphicon glyphicon-remove"></span> 删除</a>
+              </div>
+              <div class="col-xs-6 col-sm-2 placeholder">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive"
+                  alt="Generic placeholder thumbnail">
+                <h4>愣头青战队</h4>
+                <div class="height_20"></div>
+                <a class="text-muted modify"><span class="glyphicon glyphicon-pencil"></span> 修改</a>
+                <a class="text-muted remove"><span class="glyphicon glyphicon-remove"></span> 删除</a>
+              </div>
+              <div class="col-xs-6 col-sm-2 placeholder">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive"
+                  alt="Generic placeholder thumbnail">
+                <h4>铁头娃战队</h4>
+                <div class="height_20"></div>
+                <a class="text-muted modify"><span class="glyphicon glyphicon-pencil"></span> 修改</a>
+                <a class="text-muted remove"><span class="glyphicon glyphicon-remove"></span> 删除</a>
+              </div>
+              <div class="col-xs-6 col-sm-2 placeholder">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive"
+                  alt="Generic placeholder thumbnail">
+                <h4>石乐志战队</h4>
+                <div class="height_20"></div>
+                <a class="text-muted modify"><span class="glyphicon glyphicon-pencil"></span> 修改</a>
+                <a class="text-muted remove"><span class="glyphicon glyphicon-remove"></span> 删除</a>
+              </div>
+              <div class="col-xs-6 col-sm-2 placeholder">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive"
+                  alt="Generic placeholder thumbnail">
+                <h4>皮皮马战队</h4>
+                <div class="height_20"></div>
+                <a class="text-muted modify"><span class="glyphicon glyphicon-pencil"></span> 修改</a>
+                <a class="text-muted remove"><span class="glyphicon glyphicon-remove"></span> 删除</a>
+              </div>
+              <div class="col-xs-6 col-sm-2 placeholder add-team" data-toggle="modal" data-target="#modal">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive"
+                  alt="Generic placeholder thumbnail">
+                <h4>添加队伍</h4>
+                <div class="height_20"></div>
+                <a class="text-muted update"><span class="glyphicon glyphicon-ok"></span> 更新对战列表</a>
+              </div>
+            </div>
+            模态框
+            <div class="modal fade" id="modal" role="dialog">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">添加队伍</h4>
+                  </div>
+                  <div class="modal-body">
+                    <input type="text" class="form-control" placeholder="请输入队伍名称">
+                  </div>
+                  <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button> -->
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">添加</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">添加并生成对战表</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="battle">
+            <h2 class="sub-header">比赛对战表</h2>
+            <div>
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">第一轮</a></li>
+                <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">第二轮</a></li>
+                <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">第三轮</a></li>
+                <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">第四轮</a></li>
+              </ul>
+              <!-- Tab panes -->
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="home">
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <tr>
+                        <th>序号</th>
+                        <th>轮次</th>
+                        <th>比赛队伍</th>
+                        <th>比分</th>
+                        <th>胜方</th>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>第一轮</td>
+                        <td>皮皮螃：轮空</td>
+                        <td>暂无</td>
+                        <td>暂无</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>第一轮</td>
+                        <td>皮皮螃：轮空</td>
+                        <td>暂无</td>
+                        <td>暂无</td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>第一轮</td>
+                        <td>皮皮螃：轮空</td>
+                        <td>暂无</td>
+                        <td>暂无</td>
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td>第一轮</td>
+                        <td>皮皮螃：轮空</td>
+                        <td>暂无</td>
+                        <td>暂无</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="profile">
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <tr>
+                        <th>序号</th>
+                        <th>轮次</th>
+                        <th>比赛队伍</th>
+                        <th>比分</th>
+                        <th>胜方</th>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>第二轮</td>
+                        <td>皮皮螃：轮空</td>
+                        <td>暂无</td>
+                        <td>暂无</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>第二轮</td>
+                        <td>皮皮螃：轮空</td>
+                        <td>暂无</td>
+                        <td>暂无</td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>第二轮</td>
+                        <td>皮皮螃：轮空</td>
+                        <td>暂无</td>
+                        <td>暂无</td>
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td>第二轮</td>
+                        <td>皮皮螃：轮空</td>
+                        <td>暂无</td>
+                        <td>暂无</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="messages">
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <tr>
+                        <th>序号</th>
+                        <th>轮次</th>
+                        <th>比赛队伍</th>
+                        <th>比分</th>
+                        <th>胜方</th>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>第三轮</td>
+                        <td>皮皮螃：轮空</td>
+                        <td>暂无</td>
+                        <td>暂无</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>第三轮</td>
+                        <td>皮皮螃：轮空</td>
+                        <td>暂无</td>
+                        <td>暂无</td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>第三轮</td>
+                        <td>皮皮螃：轮空</td>
+                        <td>暂无</td>
+                        <td>暂无</td>
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td>第三轮</td>
+                        <td>皮皮螃：轮空</td>
+                        <td>暂无</td>
+                        <td>暂无</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="settings">
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <tr>
+                        <th>序号</th>
+                        <th>轮次</th>
+                        <th>比赛队伍</th>
+                        <th>比分</th>
+                        <th>胜方</th>
+                      </tr>
+                      <tr>
+                        <td>1</td>
+                        <td>第四轮</td>
+                        <td>皮皮螃：轮空</td>
+                        <td>暂无</td>
+                        <td>暂无</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>第四轮</td>
+                        <td>皮皮螃：轮空</td>
+                        <td>暂无</td>
+                        <td>暂无</td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>第四轮</td>
+                        <td>皮皮螃：轮空</td>
+                        <td>暂无</td>
+                        <td>暂无</td>
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td>第四轮</td>
+                        <td>皮皮螃：轮空</td>
+                        <td>暂无</td>
+                        <td>暂无</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div role="tabpanel" id="panes_2" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main tab-pane"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript
+    ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+    window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+  </script>
+  <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+  <!-- <script src="../../assets/js/vendor/holder.min.js"></script> -->
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <!-- <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script> -->
+</body>
+
+</html>
