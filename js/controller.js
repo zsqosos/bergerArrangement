@@ -10,6 +10,9 @@
  * 处理点击事件
  */
 var handleClick = {
+  matchName: '',
+  matchIndex: -1,
+  team: '',
   addMatch: function () {
     var matchName = $('.j-match-name').val();
     var isExisted = matches.findMatch(matchName);
@@ -21,12 +24,17 @@ var handleClick = {
     matches.addMatch(matchName);
   },
   modifyTeam: function (e) {
-    // newName
     var teamEl = $(e.target).parent()[0];
-    var matchName = teamEl.dataset.match;
-    var matchIndex = matches.findMatch(matchName);
-    var team = teamEl.dataset.team;
-    matches.matchList[matchIndex].modifyTeam(team, newName);
+    handleClick.teamInputEl = $(e.target).siblings('.j-input-wrapper');
+    handleClick.teamInputEl.show();
+    handleClick.matchName = teamEl.dataset.match;
+    handleClick.matchIndex = matches.findMatch(handleClick.matchName);
+    handleClick.team = teamEl.dataset.team;
+  },
+  modifyTeamComplete: function() {
+    handleClick.newName = handleClick.teamInputEl.find('.j-team-input').val();
+    matches.matchList[handleClick.matchIndex].modifyTeam(handleClick.team, handleClick.newName);
+    console.log(matches.matchList[0].teams)
   },
   removeTeam: function (e) {
     var teamEl = $(e.target).parent()[0];
@@ -56,7 +64,7 @@ var handleClick = {
     matches.matchList[matchIndex].createBattle(team);
   },
   addAndUpdate: function () {
-    this.addTeam();
-    this.updateBattle();
+    handleClick.addTeam();
+    handleClick.updateBattle();
   }
 }

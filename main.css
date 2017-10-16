@@ -1,7 +1,12 @@
 /*
  * Base structure
  */
-
+.user-hide {
+  display: none;
+}
+.show {
+  display: inherit;
+}
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
   padding-top: 50px;
@@ -112,7 +117,19 @@ body {
   display: none;
 }
 .placeholder .height_20 {
-  height: 20px
+  height: 20px;
+}
+.placeholder .input-wrapper {
+  position: relative;
+}
+.placeholder .team-input {
+  padding-right: 24px;
+}
+.placeholder .input-icon {
+  position: absolute;
+  right: 7px;
+  top: 4px;
+  cursor: pointer;
 }
 .placeholder {
   margin-bottom: 20px;
