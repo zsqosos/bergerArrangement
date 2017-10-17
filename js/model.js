@@ -10,6 +10,11 @@ function Match(name, teams) {
 }
 
 Match.prototype.addTeam = function (team) {
+  // 判断添加名称是否已存在
+  var isExisted = this.findTeam(team);
+  if (isExisted !== -1) {
+    return;
+  }
   this.teams.push(team);
   return this.teams;
 }
@@ -17,6 +22,11 @@ Match.prototype.addTeam = function (team) {
 Match.prototype.modifyTeam = function (team, newName) {
   var index = this.findTeam(team);
   if (index === -1) {
+    return;
+  }
+  // 判断新名称是否已存在
+  var isExisted = this.findTeam(newName);
+  if (isExisted !== -1) {
     return;
   }
   this.teams[index] = newName;
@@ -60,6 +70,10 @@ Matches.prototype.getInitData = function () {
 }
 
 Matches.prototype.addMatch = function (matchName) {
+  var isExisted = this.findMatch(matchName);
+  if (isExisted !== -1) {
+    return;
+  }
   var newMatch = new Match(matchName);
   this.matchList.push(newMatch);
   return this.matchList;
