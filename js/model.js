@@ -16,11 +16,17 @@ Match.prototype.addTeam = function (team) {
     return;
   }
   this.teams.push(team);
+  // 派发addTeam事件,通知view层改变
+  GlobalEvents.emit('addTeam', {
+    team: team,
+    teamLength: this.teams.length
+  });
   return this.teams;
 }
 
 Match.prototype.modifyTeam = function (team, newName) {
   var index = this.findTeam(team);
+  // console.log(index);
   if (index === -1) {
     return;
   }
@@ -30,6 +36,11 @@ Match.prototype.modifyTeam = function (team, newName) {
     return;
   }
   this.teams[index] = newName;
+  // 派发modifyTeam事件,通知view层改变
+  GlobalEvents.emit('modifyTeam', {
+    index: index,
+    newName: newName
+  });
   return this.teams;
 }
 
@@ -39,6 +50,11 @@ Match.prototype.removeTeam = function (team) {
     return;
   }
   this.teams.splice(index, 1);
+  // 派发removeTeam事件,通知view层改变
+  GlobalEvents.emit('removeTeam', {
+    index: index,
+    teamLength: this.teams.length
+  });
   return this.teams;
 }
 
@@ -48,6 +64,8 @@ Match.prototype.findTeam = function (team) {
 
 Match.prototype.createBattle = function () {
   this.battles = bergerArrange(this.teams);
+  // 派发createBattle事件,通知view层改变
+  GlobalEvents.emit('createBattle', this.battles);
   return this.battles;
 }
 

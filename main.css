@@ -134,6 +134,9 @@ body {
 .placeholder {
   margin-bottom: 20px;
 }
+.placeholder:last-child {
+  cursor: pointer;
+}
 .placeholder img {
   display: inline-block;
   border-radius: 50%;
