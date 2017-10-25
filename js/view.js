@@ -10,6 +10,7 @@ function upDateAddView(data) {
   newTeamEl[0].dataset.match = currentMatch;
   newTeamEl[0].dataset.team = data.team;
   newTeamEl.insertBefore($('.j-add-team'));
+
   updateLenght(data.teamLength);
 }
 
@@ -17,23 +18,19 @@ function upDateModifyView (data) {
   var modifyElIndex = data.index + 1;
   $($('.j-team')[modifyElIndex]).find('.j-team-name').text(data.newName);
   $($('.j-team')[modifyElIndex])[0].dataset.team = data.newName;
-  $($('.j-input-wrapper')[modifyElIndex]).hide();
 }
 
 function upDateRemoveView (data) {
   var removeElIndex = data.index + 1;
   $($('.j-team')[removeElIndex]).remove();
-  updateLenght(data.teamLength);
-}
 
-function updateBattleView (data) {
-  
+  updateLenght(data.teamLength);
 }
 
 function updateLenght(num) {
   $('.j-total-team').text(num);
 }
 
-function close() {
-  $('.j-input-wrapper').hide();
+function updateBattleView (data) {
+  
 }

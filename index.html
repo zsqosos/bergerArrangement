@@ -156,60 +156,6 @@
                 <a class="text-muted j-update"><span class="glyphicon glyphicon-ok"></span> 更新对战列表</a>
               </div>
             </div>
-            <!-- 修改队伍名称模态框 -->
-            <div class="modal fade" id="modifyModal" role="dialog">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">修改队伍</h4>
-                  </div>
-                  <div class="modal-body">
-                    <input type="text" class="form-control j-team-modify-input" placeholder="请输入队伍名称">
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-primary j-modify-ok" data-dismiss="modal">确认</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- 删除队伍模态框 -->
-            <div class="modal fade" id="removeModal" role="dialog">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">删除队伍</h4>
-                  </div>
-                  <div class="modal-body">
-                    <p>确认删除此队伍吗?</p>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                    <button type="button" class="btn btn-danger j-remove-ok" data-dismiss="modal">删除</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- 添加队伍模态框 -->
-            <div class="modal fade" id="addModal" role="dialog">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title">添加队伍</h4>
-                  </div>
-                  <div class="modal-body">
-                    <input type="text" class="form-control j-team-add-input" placeholder="请输入队伍名称">
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-primary j-add-ok" data-dismiss="modal">添加</button>
-                    <button type="button" class="btn btn-primary j-ok-update" data-dismiss="modal">添加并生成对战表</button>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
           <div class="battle">
             <h2 class="sub-header">比赛对战表</h2>
@@ -391,9 +337,118 @@
             </div>
           </div>
         </div>
-        <div role="tabpanel" id="panes_2" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main tab-pane"></div>
+        <div role="tabpanel" id="panes_2" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main tab-pane">
+          <div class="all-team">
+            <h1 class="page-header">参赛队伍/共<span class="j-total-team">0</span>队</h1>
+            <div class="row placeholders">
+              <div class="col-xs-6 col-sm-2 hide placeholder j-team j-team-origin">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive"
+                  alt="">
+                <h4 class="j-team-name"></h4>
+                <div class="height_20"></div>
+                <a class="text-muted j-modify" data-toggle="modal" data-target="#modifyModal"><span class="glyphicon glyphicon-pencil"></span> 修改</a>
+                <a class="text-muted j-remove" data-toggle="modal" data-target="#removeModal"><span class="glyphicon glyphicon-remove"></span> 删除</a>
+              </div>
+              <div class="col-xs-6 col-sm-2 placeholder j-add-team" data-match="马老师水友赛(示例)" data-toggle="modal" data-target="#addModal">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive"
+                  alt="Generic placeholder thumbnail">
+                <h4>添加队伍</h4>
+                <div class="height_20"></div>
+                <a class="text-muted j-update"><span class="glyphicon glyphicon-ok"></span> 更新对战列表</a>
+              </div>
+            </div>
+          </div>
+          <div class="battle">
+            <h2 class="sub-header">比赛对战表</h2>
+            <p class="no-team-tips">暂无比赛队伍,请先添加队伍!</p>
+            <div class=" j-battle-origin">
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#pane_1" aria-controls="tab_1" role="tab" data-toggle="tab">第<span class="round">一</span>轮</a></li>
+              </ul>
+              <!-- Tab panes -->
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="pane_1">
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <tr>
+                        <th>序号</th>
+                        <th>轮次</th>
+                        <th>比赛队伍</th>
+                        <th>比分</th>
+                        <th>胜方</th>
+                      </tr>
+                      <tr>
+                        <td><span class="order">1</span></td>
+                        <td>第<span class="round">一</span>轮</td>
+                        <td><span class="left-team">皮皮螃</span> VS <span class="right-team">轮空</></td>
+                        <td>暂无</td>
+                        <td>暂无</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 添加队伍模态框 -->
+      <div class="modal fade" id="addModal" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">添加队伍</h4>
+            </div>
+            <div class="modal-body">
+              <input type="text" class="form-control j-team-add-input" placeholder="请输入队伍名称">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary j-add-ok" data-dismiss="modal">添加</button>
+              <button type="button" class="btn btn-primary j-ok-update" data-dismiss="modal">添加并生成对战表</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 修改队伍名称模态框 -->
+      <div class="modal fade" id="modifyModal" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">修改队伍</h4>
+            </div>
+            <div class="modal-body">
+              <input type="text" class="form-control j-team-modify-input" placeholder="请输入队伍新名称">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+              <button type="button" class="btn btn-primary j-modify-ok" data-dismiss="modal">确认</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 删除队伍模态框 -->
+      <div class="modal fade" id="removeModal" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">删除队伍</h4>
+            </div>
+            <div class="modal-body">
+              <p>确认删除此队伍吗?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+              <button type="button" class="btn btn-danger j-remove-ok" data-dismiss="modal">删除</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
   </div>
 
   <!-- Bootstrap core JavaScript

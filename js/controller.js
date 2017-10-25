@@ -2,7 +2,7 @@
  * 处理点击事件
  */
 function HandleClick() {
-  // 定义当前比赛和队伍
+  // 定义当前被点击的比赛和队伍
   this.match = '';
   this.team = '';
 
@@ -17,37 +17,25 @@ function HandleClick() {
     // console.log(matches.matchList)
   }
 
-  // this.modifyTeam = function (e) {
-  //   var teamEl = $(e.target).parent()[0];
-  //   this.elToModel(teamEl);
-    // this.teamInputEl = $(e.target).siblings('.j-input-wrapper');
-    // this.teamInputEl.show();
-  // }
+  this.selectedTeam = function (e) {
+    var teamEl = $(e.target).parent()[0];
+    this.setCurrentTeam(teamEl);
+  }
 
   // 确保在modifyTeam后执行
-  this.modifyTeamComplete = function () {
+  this.modifyTeam = function () {
     var newName = $('.j-team-modify-input').val();
     this.match.modifyTeam(this.team, newName);
-    console.log(this.match.teams);
-    // console.log(this.teamInputEl.find('.j-team-input'))
-    // var newName = this.teamInputEl.find('.j-team-input').val();
-    // console.log(newName);
-    // this.match.modifyTeam(this.team, newName);
     // console.log(this.match.teams);
   }
 
-  // this.removeTeam = function (e) {
-  //   var teamEl = $(e.target).parent()[0];
-  //   this.elToModel(teamEl);
-  // }
-
-  this.removeTeamComplete = function () {
+  this.removeTeam = function () {
     this.match.removeTeam(this.team);    
   }
 
   this.addTeam = function () {
     var teamEl = $('.j-add-team')[0];
-    this.elToModel(teamEl);
+    this.setCurrentTeam(teamEl);
     var team = $('.j-team-add-input').val();
     $('.j-team-input').val('');
     // 空字符未做处理
@@ -59,14 +47,15 @@ function HandleClick() {
   }
 
   this.updateBattle = function (e) {
+    console.log(e)
     e.stopPropagation();
     var teamEl = $('.j-update').parent()[0];
-    this.elToModel(teamEl);
+    this.setCurrentTeam(teamEl);
     // var matchName = teamEl.dataset.match;
     // var matchIndex = matches.findMatch(matchName);
     var teams = this.match.teams;
     this.match.createBattle(teams);
-    // console.log(this.match.battles);
+    console.log(this.match.battles);
   }
 
   this.addAndUpdate = function () {
@@ -74,9 +63,8 @@ function HandleClick() {
     this.updateBattle();
   }
 
-  // 将点击的元素映射到模型
-  this.clickElToModel = function (event) {
-    var teamEl = $(event.target).parent()[0];
+  // 根据被点击的元素设置当前比赛和队伍
+  this.setCurrentTeam= function (teamEl) {
     var matchName = teamEl.dataset.match;
     var matchIndex = matches.findMatch(matchName);
     this.team = teamEl.dataset.team;
