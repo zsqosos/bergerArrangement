@@ -22,7 +22,7 @@ function HandleClick() {
     this.setCurrentTeam(teamEl);
   }
 
-  // 确保在modifyTeam后执行
+  
   this.modifyTeam = function () {
     var newName = $('.j-team-modify-input').val();
     this.match.modifyTeam(this.team, newName);
@@ -47,7 +47,6 @@ function HandleClick() {
   }
 
   this.updateBattle = function (e) {
-    console.log(e)
     e.stopPropagation();
     var teamEl = $('.j-update').parent()[0];
     this.setCurrentTeam(teamEl);
@@ -55,7 +54,7 @@ function HandleClick() {
     // var matchIndex = matches.findMatch(matchName);
     var teams = this.match.teams;
     this.match.createBattle(teams);
-    console.log(this.match.battles);
+    // console.log(this.match.battles);
   }
 
   this.addAndUpdate = function () {

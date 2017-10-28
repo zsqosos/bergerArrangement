@@ -6,7 +6,7 @@ $(function () {
 
   matches = new Matches();
   matches.initialize();
-  // matches.matchList[0].createBattle();
+  matches.matchList[0].createBattle();
   
   // 监听点击事件
   $('.j-add-match').on('click', handleClick.addMatch.bind(handleClick));

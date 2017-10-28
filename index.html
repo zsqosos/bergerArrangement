@@ -159,7 +159,7 @@
           </div>
           <div class="battle">
             <h2 class="sub-header">比赛对战表</h2>
-            <div>
+            <div id="battleM">
               <!-- Nav tabs -->
               <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">第一轮</a></li>
@@ -358,19 +358,19 @@
               </div>
             </div>
           </div>
-          <div class="battle">
+          <div class="battle j-battle">
             <h2 class="sub-header">比赛对战表</h2>
             <p class="no-team-tips">暂无比赛队伍,请先添加队伍!</p>
-            <div class=" j-battle-origin">
+            <div class="j-battle-origin">
               <!-- Nav tabs -->
-              <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#pane_1" aria-controls="tab_1" role="tab" data-toggle="tab">第<span class="round">一</span>轮</a></li>
+              <ul class="nav nav-tabs j-nav-tabs" role="tablist">
+                <li role="presentation" class="hide j-tab-origin"><a href="#pane_1" aria-controls="tab_1" role="tab" data-toggle="tab">第<span class="round">一</span>轮</a></li>
               </ul>
               <!-- Tab panes -->
-              <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="pane_1">
+              <div class="tab-content j-tab-content">
+                <div role="tabpanel" class="tab-pane j-pane-origin" id="pane_1">
                   <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table class="table table-striped j-table">
                       <tr>
                         <th>序号</th>
                         <th>轮次</th>
@@ -378,7 +378,7 @@
                         <th>比分</th>
                         <th>胜方</th>
                       </tr>
-                      <tr>
+                      <tr class="j-table-row-origin">
                         <td><span class="order">1</span></td>
                         <td>第<span class="round">一</span>轮</td>
                         <td><span class="left-team">皮皮螃</span> VS <span class="right-team">轮空</></td>
@@ -454,10 +454,8 @@
   <!-- Bootstrap core JavaScript
     ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script>
-    window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
-  </script>
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+  <script src="./lib/jquery-3.2.1.min.js"></script>
   <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="./lib/eventManager.js"></script>
   <script src="./main.js"></script>
