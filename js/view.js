@@ -3,6 +3,7 @@ GlobalEvents.on('addTeam', upDateAddView);
 GlobalEvents.on('modifyTeam', upDateModifyView);
 GlobalEvents.on('removeTeam', upDateRemoveView);
 GlobalEvents.on('createBattle', updateBattleView);
+GlobalEvents.on('addMatch', updateAddMatch);
 
 function upDateAddView(data) {
   var newTeamEl = $('.j-team-origin').clone(true).removeClass('j-team-origin hide');
@@ -15,13 +16,13 @@ function upDateAddView(data) {
 }
 
 function upDateModifyView(data) {
-  var modifyElIndex = data.index + 1;
+  var modifyElIndex = data.index;
   $($('.j-team')[modifyElIndex]).find('.j-team-name').text(data.newName);
   $($('.j-team')[modifyElIndex])[0].dataset.team = data.newName;
 }
 
 function upDateRemoveView(data) {
-  var removeElIndex = data.index + 1;
+  var removeElIndex = data.index;
   $($('.j-team')[removeElIndex]).remove();
 
   updateLenght(data.teamLength);
@@ -32,7 +33,7 @@ function updateLenght(num) {
 }
 
 function updateBattleView(data) {
-  var battleEl = $('.j-battle-origin').clone(true).removeClass('j-battle-origin hide');
+  var battleEl = $('.j-battle-origin').clone(true).removeClass('j-battle-origin hide').addClass('j-battle-content');
   var tabNavEl = battleEl.find('.j-nav-tabs');
   var tabContentEl = battleEl.find('.j-tab-content');
   var tabEl = $('.j-tab-origin');
@@ -66,7 +67,19 @@ function updateBattleView(data) {
   battleEl.find('.j-nav-tabs .j-tab-origin').remove();
   battleEl.find('.j-tab-content .j-pane-origin').remove();
 
-  $('#battleM').after(battleEl).remove();
+  $('.j-battle-content').after(battleEl).remove();
+}
+
+function updateAddMatch(data) {
+  var matchListEl = $('.j-match-list-origin').clone(true).removeClass('j-match-list-origin hide').addClass('active');
+  var matchContentEl = $('.j-match-origin').clone(true).removeClass('j-match-origin hide');
+  var herf = '#panes_' + (data.length - 1);
+  matchListEl.find('a').attr('href', herf);
+  matchListEl.find('a')[0].dataset.match = data.newMatch.name;
+  matchContentEl.attr('id', href);
+  
+
+  console.log();
 }
 
 // 將99以内的数字转化为汉字

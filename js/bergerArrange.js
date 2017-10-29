@@ -7,7 +7,7 @@ function bergerArrange(arr) {
   var totalRound = Math.ceil((arr.length / 2)) * 2 - 1;
   // jumpNum为间隔数
   var jumpNum = Math.max(Math.ceil(arr.length / 2 - 2), 0);
-  var lastTeam = arr.length % 2 === 0 ? arr[arr.length - 1] : 0;
+  var lastTeam = arr.length % 2 === 0 ? arr[arr.length - 1] : '轮空';
   // 队伍数量若为偶数，则去掉最后一支队伍
   if (arr.length % 2 === 0) {
     arr.pop();

@@ -66,6 +66,7 @@ Match.prototype.createBattle = function () {
   this.battles = bergerArrange(this.teams);
   // 派发createBattle事件,通知view层改变
   GlobalEvents.emit('createBattle', this.battles);
+  console.log(this.battles);
   return this.battles;
 }
 
@@ -94,13 +95,17 @@ Matches.prototype.addMatch = function (matchName) {
   }
   var newMatch = new Match(matchName);
   this.matchList.push(newMatch);
+  GlobalEvents.emit('addMatch', {
+    newMatch: newMatch,
+    matchesLength: this.matchList.length
+  })
   return this.matchList;
 }
 
 Matches.prototype.findMatch = function (matchName) {
   var index = -1;
   for (var i = 0; i < this.matchList.length; i++) {
-    if(matchName===this.matchList[i].name){
+    if (matchName === this.matchList[i].name) {
       index = i;
       return index;
     }
