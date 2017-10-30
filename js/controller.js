@@ -3,8 +3,8 @@
  */
 function HandleClick() {
   // 定义当前被点击的比赛和队伍
-  this.match = '';
-  this.team = '';
+  this.match = null;
+  this.team = null;
 
   this.addMatch = function () {
     var matchName = $('.j-match-name').val();
@@ -14,6 +14,8 @@ function HandleClick() {
       return
     }
     matches.addMatch(matchName);
+    currentMatchIndex = matches.matchList.length - 1;
+    this.match = matches.matchList[currentMatchIndex];
     // console.log(matches.matchList)
   }
 
@@ -22,20 +24,19 @@ function HandleClick() {
     this.setCurrentTeam(teamEl);
   }
 
-  
+
   this.modifyTeam = function () {
     var newName = $('.j-team-modify-input').val();
     this.match.modifyTeam(this.team, newName);
-    // console.log(this.match.teams);
+    console.log(this.match.teams);
   }
 
   this.removeTeam = function () {
-    this.match.removeTeam(this.team);    
+    this.match.removeTeam(this.team);
   }
 
   this.addTeam = function () {
-    var teamEl = $('.j-add-team')[0];
-    this.setCurrentTeam(teamEl);
+    // this.match = matches.matchList[currentMatchIndex];
     var team = $('.j-team-add-input').val();
     $('.j-team-input').val('');
     // 空字符未做处理
@@ -47,9 +48,11 @@ function HandleClick() {
   }
 
   this.updateBattle = function (e) {
-    e.stopPropagation();
-    var teamEl = $('.j-update').parent()[0];
-    this.setCurrentTeam(teamEl);
+    if (e) {
+      e.stopPropagation();
+    }
+    // var teamEl = $('.j-update').parent()[0];
+    // this.setCurrentTeam(teamEl);
     // var matchName = teamEl.dataset.match;
     // var matchIndex = matches.findMatch(matchName);
     var teams = this.match.teams;
@@ -62,11 +65,20 @@ function HandleClick() {
     this.updateBattle();
   }
 
-  // 根据被点击的元素设置当前比赛和队伍
-  this.setCurrentTeam= function (teamEl) {
-    var matchName = teamEl.dataset.match;
-    var matchIndex = matches.findMatch(matchName);
+  // 根据被点击的元素设置当前队伍
+  this.setCurrentTeam = function (teamEl) {
     this.team = teamEl.dataset.team;
-    this.match = matches.matchList[matchIndex];
+  }
+
+  this.setCurrentMatch = function (e) {
+    var matchName = e.target.dataset.match;
+    if (currentMatchIndex === matches.findMatch(matchName)) return;
+    currentMatchIndex = matches.findMatch(matchName);
+    this.match = matches.matchList[currentMatchIndex];
+    this.updateBattle();
+  }
+
+  this.init = function () {
+    this.match = matches.matchList[currentMatchIndex];
   }
 }

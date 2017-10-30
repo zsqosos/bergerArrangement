@@ -5,34 +5,44 @@ GlobalEvents.on('removeTeam', upDateRemoveView);
 GlobalEvents.on('createBattle', updateBattleView);
 GlobalEvents.on('addMatch', updateAddMatch);
 
+
+
 function upDateAddView(data) {
   var newTeamEl = $('.j-team-origin').clone(true).removeClass('j-team-origin hide');
   newTeamEl.find('.j-team-name').text(data.team);
-  newTeamEl[0].dataset.match = currentMatch;
+  newTeamEl[0].dataset.match = matches.matchList[currentMatchIndex].name;
   newTeamEl[0].dataset.team = data.team;
-  newTeamEl.insertBefore($('.j-add-team'));
 
-  updateLenght(data.teamLength);
+  var rootEl = $('#panes_' + (currentMatchIndex + 1));
+  newTeamEl.insertBefore(rootEl.find('.j-add-team'));
+
+  updateLenght();
 }
 
 function upDateModifyView(data) {
   var modifyElIndex = data.index;
-  $($('.j-team')[modifyElIndex]).find('.j-team-name').text(data.newName);
-  $($('.j-team')[modifyElIndex])[0].dataset.team = data.newName;
+  var rootEl = $('#panes_' + (currentMatchIndex + 1));
+  $(rootEl.find('.j-team')[modifyElIndex]).find('.j-team-name').text(data.newName);
+  $(rootEl.find('.j-team')[modifyElIndex])[0].dataset.team = data.newName;
 }
 
 function upDateRemoveView(data) {
   var removeElIndex = data.index;
-  $($('.j-team')[removeElIndex]).remove();
+  var rootEl = $('#panes_' + (currentMatchIndex + 1));
+  $(rootEl.find('.j-team')[removeElIndex]).remove();
 
-  updateLenght(data.teamLength);
+  updateLenght();
 }
 
-function updateLenght(num) {
-  $('.j-total-team').text(num);
+function updateLenght() {
+  var total = matches.matchList[currentMatchIndex].teams.length;
+  var rootEl = $('#panes_' + (currentMatchIndex + 1));
+  rootEl.find('.j-total-team').text(total);
 }
 
 function updateBattleView(data) {
+  $('.j-battle-content').remove();
+
   var battleEl = $('.j-battle-origin').clone(true).removeClass('j-battle-origin hide').addClass('j-battle-content');
   var tabNavEl = battleEl.find('.j-nav-tabs');
   var tabContentEl = battleEl.find('.j-tab-content');
@@ -67,19 +77,21 @@ function updateBattleView(data) {
   battleEl.find('.j-nav-tabs .j-tab-origin').remove();
   battleEl.find('.j-tab-content .j-pane-origin').remove();
 
-  $('.j-battle-content').after(battleEl).remove();
+  var rootEl = $('#panes_' + (currentMatchIndex + 1));
+  rootEl.find('.j-battle').append(battleEl);
 }
 
 function updateAddMatch(data) {
   var matchListEl = $('.j-match-list-origin').clone(true).removeClass('j-match-list-origin hide').addClass('active');
-  var matchContentEl = $('.j-match-origin').clone(true).removeClass('j-match-origin hide');
-  var herf = '#panes_' + (data.length - 1);
-  matchListEl.find('a').attr('href', herf);
+  var matchContentEl = $('.j-match-origin').clone(true).removeClass('j-match-origin hide').addClass('active');
+  matchListEl.find('a').attr('href', '#panes_' + data.matchesLength).text(data.newMatch.name);
   matchListEl.find('a')[0].dataset.match = data.newMatch.name;
-  matchContentEl.attr('id', href);
-  
+  matchContentEl.attr('id', 'panes_' + data.matchesLength);
 
-  console.log();
+  $('.j-match-nav').find('li').removeClass('active');
+  $('.j-match-nav').append(matchListEl);
+  $('.j-match-content').find('div').removeClass('active');
+  $('.j-match-content').append(matchContentEl);
 }
 
 // 將99以内的数字转化为汉字

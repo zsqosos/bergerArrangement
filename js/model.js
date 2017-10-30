@@ -26,7 +26,7 @@ Match.prototype.addTeam = function (team) {
 
 Match.prototype.modifyTeam = function (team, newName) {
   var index = this.findTeam(team);
-  // console.log(index);
+  console.log(index);
   if (index === -1) {
     return;
   }
@@ -66,7 +66,6 @@ Match.prototype.createBattle = function () {
   this.battles = bergerArrange(this.teams);
   // 派发createBattle事件,通知view层改变
   GlobalEvents.emit('createBattle', this.battles);
-  console.log(this.battles);
   return this.battles;
 }
 

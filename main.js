@@ -1,12 +1,14 @@
 var matches = null;
-var currentMatch = '马老师水友赛(示例)';
+var currentMatchIndex = 0;
 $(function () {
   // 初始化
-  handleClick = new HandleClick();
-
   matches = new Matches();
   matches.initialize();
-  matches.matchList[0].createBattle();
+  matches.matchList[currentMatchIndex].createBattle();
+
+  handleClick = new HandleClick();
+  handleClick.init();
+  
   
   // 监听点击事件
   $('.j-add-match').on('click', handleClick.addMatch.bind(handleClick));
@@ -17,4 +19,5 @@ $(function () {
   $('.j-remove-ok').on('click', handleClick.removeTeam.bind(handleClick));
   $('.j-update').on('click', handleClick.updateBattle.bind(handleClick));
   $('.j-ok-update').on('click', handleClick.addAndUpdate.bind(handleClick));
+  $('.j-nav-item').on('click', handleClick.setCurrentMatch.bind(handleClick));
 })
