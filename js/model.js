@@ -26,7 +26,6 @@ Match.prototype.addTeam = function (team) {
 
 Match.prototype.modifyTeam = function (team, newName) {
   var index = this.findTeam(team);
-  console.log(index);
   if (index === -1) {
     return;
   }

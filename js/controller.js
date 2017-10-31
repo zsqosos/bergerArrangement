@@ -16,6 +16,7 @@ function HandleClick() {
     matches.addMatch(matchName);
     currentMatchIndex = matches.matchList.length - 1;
     this.match = matches.matchList[currentMatchIndex];
+    this.updateBattle();
     // console.log(matches.matchList)
   }
 
@@ -28,7 +29,7 @@ function HandleClick() {
   this.modifyTeam = function () {
     var newName = $('.j-team-modify-input').val();
     this.match.modifyTeam(this.team, newName);
-    console.log(this.match.teams);
+    // console.log(this.match.teams);
   }
 
   this.removeTeam = function () {
@@ -51,13 +52,8 @@ function HandleClick() {
     if (e) {
       e.stopPropagation();
     }
-    // var teamEl = $('.j-update').parent()[0];
-    // this.setCurrentTeam(teamEl);
-    // var matchName = teamEl.dataset.match;
-    // var matchIndex = matches.findMatch(matchName);
     var teams = this.match.teams;
     this.match.createBattle(teams);
-    // console.log(this.match.battles);
   }
 
   this.addAndUpdate = function () {

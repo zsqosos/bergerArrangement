@@ -41,8 +41,19 @@ function updateLenght() {
 }
 
 function updateBattleView(data) {
+  // 移除其它对战表
   $('.j-battle-content').remove();
 
+  var rootEl = $('#panes_' + (currentMatchIndex + 1));
+
+  // 若队伍过少,则显示无队伍
+  if(!data){
+    var noTeamEl = $('.j-no-team-origin').clone(true).removeClass('j-no-team-origin').addClass('j-battle-content');
+    rootEl.find('.j-battle').append(noTeamEl);
+    return;
+  }
+
+  // 根据比赛对战情况渲染对战表
   var battleEl = $('.j-battle-origin').clone(true).removeClass('j-battle-origin hide').addClass('j-battle-content');
   var tabNavEl = battleEl.find('.j-nav-tabs');
   var tabContentEl = battleEl.find('.j-tab-content');
@@ -76,8 +87,7 @@ function updateBattleView(data) {
   }
   battleEl.find('.j-nav-tabs .j-tab-origin').remove();
   battleEl.find('.j-tab-content .j-pane-origin').remove();
-
-  var rootEl = $('#panes_' + (currentMatchIndex + 1));
+  // 插入对战表
   rootEl.find('.j-battle').append(battleEl);
 }
 
