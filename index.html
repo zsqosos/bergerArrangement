@@ -9,6 +9,7 @@
 
   <link href="./lib/bootstrap/bootstrap.min.css" rel="stylesheet">
   <link href="./main.css" rel="stylesheet">
+  <link href="https://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- [if lt IE 9]>
@@ -43,7 +44,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-sm-3 col-md-2 sidebar">
-        <div class="row add-game">
+        <div class="row add-match">
           <h4 class="title">添加一场新比赛</h4>
           <div class="input-group">
             <input type="text" class="form-control j-match-name" placeholder="请输入比赛名称">
@@ -64,68 +65,60 @@
           <div class="all-team">
             <h2 class="page-header">参赛队伍/共<span class="j-total-team">7</span>队</h2>
             <div class="row placeholders">
-              <div class="col-xs-6 col-sm-2 placeholder j-team" data-match="马老师水友赛(示例)" data-team="皮皮螃战队">
-                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive"
+              <div class="col-xs-6 col-sm-2 placeholder j-team" title="皮皮螃战队" data-match="马老师水友赛(示例)" data-team="皮皮螃战队">
+                <img src="./image/1.jpg" width="100" height="100" class="img-responsive"
                   alt="Generic placeholder thumbnail">
                 <h4 class="j-team-name">皮皮螃战队</h4>
-                <div class="height_20"></div>
-                <a class="text-muted j-modify" data-toggle="modal" data-target="#modifyModal"><span class="glyphicon glyphicon-pencil"></span> 修改</a>
-                <a class="text-muted j-remove" data-toggle="modal" data-target="#removeModal"><span class="glyphicon glyphicon-remove"></span> 删除</a>
+                <a class="text-muted modify j-modify" data-toggle="modal" data-target="#modifyModal"><span class="glyphicon glyphicon-pencil"></span> 修改</a>
+                <a class="text-muted remove j-remove" data-toggle="modal" data-target="#removeModal"><span class="glyphicon glyphicon-remove"></span> 删除</a>
               </div>
-              <div class="col-xs-6 col-sm-2 placeholder j-team" data-match="马老师水友赛(示例)" data-team="得了急战队">
-                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive"
+              <div class="col-xs-6 col-sm-2 placeholder j-team" title="得了急战队" data-match="马老师水友赛(示例)" data-team="得了急战队">
+                <img src="./image/2.jpg" width="100" height="100" class="img-responsive"
                   alt="Generic placeholder thumbnail">
                 <h4 class="j-team-name">得了急战队</h4>
-                <div class="height_20"></div>
-                <a class="text-muted j-modify" data-toggle="modal" data-target="#modifyModal"><span class="glyphicon glyphicon-pencil"></span> 修改</a>
-                <a class="text-muted j-remove" data-toggle="modal" data-target="#removeModal"><span class="glyphicon glyphicon-remove"></span> 删除</a>
+                <a class="text-muted modify j-modify" data-toggle="modal" data-target="#modifyModal"><span class="glyphicon glyphicon-pencil"></span> 修改</a>
+                <a class="text-muted remove j-remove" data-toggle="modal" data-target="#removeModal"><span class="glyphicon glyphicon-remove"></span> 删除</a>
               </div>
-              <div class="col-xs-6 col-sm-2 placeholder j-team" data-match="马老师水友赛(示例)" data-team="任里皮战队">
-                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive"
+              <div class="col-xs-6 col-sm-2 placeholder j-team" title="任里皮战队" data-match="马老师水友赛(示例)" data-team="任里皮战队">
+                <img src="./image/3.jpg" width="100" height="100" class="img-responsive"
                   alt="Generic placeholder thumbnail">
                 <h4 class="j-team-name">任里皮战队</h4>
-                <div class="height_20"></div>
-                <a class="text-muted j-modify" data-toggle="modal" data-target="#modifyModal"><span class="glyphicon glyphicon-pencil"></span> 修改</a>
-                <a class="text-muted j-remove" data-toggle="modal" data-target="#removeModal"><span class="glyphicon glyphicon-remove"></span> 删除</a>
+                <a class="text-muted modify j-modify" data-toggle="modal" data-target="#modifyModal"><span class="glyphicon glyphicon-pencil"></span> 修改</a>
+                <a class="text-muted remove j-remove" data-toggle="modal" data-target="#removeModal"><span class="glyphicon glyphicon-remove"></span> 删除</a>
               </div>
-              <div class="col-xs-6 col-sm-2 placeholder j-team" data-match="马老师水友赛(示例)" data-team="愣头青战队">
-                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive"
+              <div class="col-xs-6 col-sm-2 placeholder j-team" title="愣头青战队" data-match="马老师水友赛(示例)" data-team="愣头青战队">
+                <img src="./image/4.jpg" width="100" height="100" class="img-responsive"
                   alt="Generic placeholder thumbnail">
                 <h4 class="j-team-name">愣头青战队</h4>
-                <div class="height_20"></div>
                 <a class="text-muted j-modify" data-toggle="modal" data-target="#modifyModal"><span class="glyphicon glyphicon-pencil"></span> 修改</a>
-                <a class="text-muted j-remove" data-toggle="modal" data-target="#removeModal"><span class="glyphicon glyphicon-remove"></span> 删除</a>
+                <a class="text-muted remove j-remove" data-toggle="modal" data-target="#removeModal"><span class="glyphicon glyphicon-remove"></span> 删除</a>
               </div>
-              <div class="col-xs-6 col-sm-2 placeholder j-team" data-match="马老师水友赛(示例)" data-team="铁头娃战队">
-                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive"
+              <div class="col-xs-6 col-sm-2 placeholder j-team" title="铁头娃战队" data-match="马老师水友赛(示例)" data-team="铁头娃战队">
+                <img src="./image/5.jpg" width="100" height="100" class="img-responsive"
                   alt="Generic placeholder thumbnail">
                 <h4 class="j-team-name">铁头娃战队</h4>
-                <div class="height_20"></div>
-                <a class="text-muted j-modify" data-toggle="modal" data-target="#modifyModal"><span class="glyphicon glyphicon-pencil"></span> 修改</a>
-                <a class="text-muted j-remove" data-toggle="modal" data-target="#removeModal"><span class="glyphicon glyphicon-remove"></span> 删除</a>
+                <a class="text-muted modify j-modify" data-toggle="modal" data-target="#modifyModal"><span class="glyphicon glyphicon-pencil"></span> 修改</a>
+                <a class="text-muted remove j-remove" data-toggle="modal" data-target="#removeModal"><span class="glyphicon glyphicon-remove"></span> 删除</a>
               </div>
-              <div class="col-xs-6 col-sm-2 placeholder j-team" data-match="马老师水友赛(示例)" data-team="石乐志战队">
-                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive"
+              <div class="col-xs-6 col-sm-2 placeholder j-team" title="石乐志战队" data-match="马老师水友赛(示例)" data-team="石乐志战队">
+                <img src="./image/6.jpg" width="100" height="100" class="img-responsive"
                   alt="Generic placeholder thumbnail">
                 <h4 class="j-team-name">石乐志战队</h4>
-                <div class="height_20"></div>
-                <a class="text-muted j-modify" data-toggle="modal" data-target="#modifyModal"><span class="glyphicon glyphicon-pencil"></span> 修改</a>
-                <a class="text-muted j-remove" data-toggle="modal" data-target="#removeModal"><span class="glyphicon glyphicon-remove"></span> 删除</a>
+                <a class="text-muted modify j-modify" data-toggle="modal" data-target="#modifyModal"><span class="glyphicon glyphicon-pencil"></span> 修改</a>
+                <a class="text-muted remove j-remove" data-toggle="modal" data-target="#removeModal"><span class="glyphicon glyphicon-remove"></span> 删除</a>
               </div>
-              <div class="col-xs-6 col-sm-2 placeholder j-team" data-match="马老师水友赛(示例)" data-team="皮皮马战队">
-                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive"
+              <div class="col-xs-6 col-sm-2 placeholder j-team" title="皮皮马战队" data-match="马老师水友赛(示例)" data-team="皮皮马战队">
+                <img src="./image/7.jpg" width="100" height="100" class="img-responsive"
                   alt="Generic placeholder thumbnail">
                 <h4 class="j-team-name">皮皮马战队</h4>
-                <div class="height_20"></div>
-                <a class="text-muted j-modify" data-toggle="modal" data-target="#modifyModal"><span class="glyphicon glyphicon-pencil"></span> 修改</a>
-                <a class="text-muted j-remove" data-toggle="modal" data-target="#removeModal"><span class="glyphicon glyphicon-remove"></span> 删除</a>
+                <a class="text-muted modify j-modify" data-toggle="modal" data-target="#modifyModal"><span class="glyphicon glyphicon-pencil"></span> 修改</a>
+                <a class="text-muted remove j-remove" data-toggle="modal" data-target="#removeModal"><span class="glyphicon glyphicon-remove"></span> 删除</a>
               </div>
               <div class="col-xs-6 col-sm-2 placeholder j-add-team" data-match="马老师水友赛(示例)" data-toggle="modal" data-target="#addModal">
-                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive"
+                <img src="./image/0.jpg" width="100" height="100" class="img-responsive"
                   alt="Generic placeholder thumbnail">
                 <h4>添加队伍</h4>
-                <div class="height_20"></div>
-                <a class="text-muted j-update"><span class="glyphicon glyphicon-ok"></span> 更新对战列表</a>
+                <a class="text-muted update j-update"><span class="glyphicon glyphicon-ok"></span> 更新对战列表</a>
               </div>
             </div>
           </div>
@@ -194,12 +187,11 @@
       <div class="origin hide">
         <!-- 队伍模板 -->
         <div class="col-xs-6 col-sm-2 hide placeholder j-team j-team-origin">
-          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive"
+          <img src="" width="100" height="100" class="img-responsive"
             alt="">
           <h4 class="j-team-name"></h4>
-          <div class="height_20"></div>
-          <a class="text-muted j-modify" data-toggle="modal" data-target="#modifyModal"><span class="glyphicon glyphicon-pencil"></span> 修改</a>
-          <a class="text-muted j-remove" data-toggle="modal" data-target="#removeModal"><span class="glyphicon glyphicon-remove"></span> 删除</a>
+          <a class="text-muted modify j-modify" data-toggle="modal" data-target="#modifyModal"><span class="glyphicon glyphicon-pencil"></span> 修改</a>
+          <a class="text-muted remove j-remove" data-toggle="modal" data-target="#removeModal"><span class="glyphicon glyphicon-remove"></span> 删除</a>
         </div>
         <!-- 对战表模板 -->
         <div class="j-no-team-origin">
@@ -241,11 +233,10 @@
             <h2 class="page-header">参赛队伍/共<span class="j-total-team">0</span>队</h2>
             <div class="row placeholders">
               <div class="col-xs-6 col-sm-2 placeholder j-add-team" data-match="马老师水友赛(示例)" data-toggle="modal" data-target="#addModal">
-                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="100" height="100" class="img-responsive"
+                <img src="./image/0.jpg" width="100" height="100" class="img-responsive"
                   alt="Generic placeholder thumbnail">
                 <h4>添加队伍</h4>
-                <div class="height_20"></div>
-                <a class="text-muted j-update"><span class="glyphicon glyphicon-ok"></span> 更新对战列表</a>
+                <a class="text-muted update j-update"><span class="glyphicon glyphicon-ok"></span> 更新对战列表</a>
               </div>
             </div>
           </div>
@@ -259,10 +250,11 @@
 
   <script src="./lib/jquery-3.2.1.min.js"></script>
   <script src="./lib/bootstrap/bootstrap.min.js"></script>
+  <script src="https://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
   <script src="./lib/eventManager.js"></script>
+  <script src="./js/bergerArrange.js"></script>
   <script src="./main.js"></script>
   <script src="./js/controller.js"></script>
-  <script src="./js/bergerArrange.js"></script>
   <script src="./js/model.js"></script>
   <script src="./js/view.js"></script>
 </body>

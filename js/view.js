@@ -4,12 +4,17 @@ GlobalEvents.on('modifyTeam', upDateModifyView);
 GlobalEvents.on('removeTeam', upDateRemoveView);
 GlobalEvents.on('createBattle', updateBattleView);
 GlobalEvents.on('addMatch', updateAddMatch);
+GlobalEvents.on('dataExisted', teamExistedView);
 
-
+// 提示框设置
+toastr.options.positionClass = 'toast-bottom-right';
+toastr.options.timeOut = 2500;
 
 function upDateAddView(data) {
   var newTeamEl = $('.j-team-origin').clone(true).removeClass('j-team-origin hide');
+  newTeamEl.attr('title', data.team);
   newTeamEl.find('.j-team-name').text(data.team);
+  newTeamEl.find('img').attr('src', './image/' + Math.ceil(Math.random() * 29) + '.jpg')
   newTeamEl[0].dataset.match = matches.matchList[currentMatchIndex].name;
   newTeamEl[0].dataset.team = data.team;
 
@@ -17,12 +22,13 @@ function upDateAddView(data) {
   newTeamEl.insertBefore(rootEl.find('.j-add-team'));
 
   updateLenght();
+  // toastr.success('队伍添加成功，请更新对战列表');
 }
 
 function upDateModifyView(data) {
   var modifyElIndex = data.index;
   var rootEl = $('#panes_' + (currentMatchIndex + 1));
-  $(rootEl.find('.j-team')[modifyElIndex]).find('.j-team-name').text(data.newName);
+  $(rootEl.find('.j-team')[modifyElIndex]).attr('title', data.newName).find('.j-team-name').text(data.newName);
   $(rootEl.find('.j-team')[modifyElIndex])[0].dataset.team = data.newName;
 }
 
@@ -32,6 +38,7 @@ function upDateRemoveView(data) {
   $(rootEl.find('.j-team')[removeElIndex]).remove();
 
   updateLenght();
+  // toastr.info('队伍已删除');
 }
 
 function updateLenght() {
@@ -47,9 +54,12 @@ function updateBattleView(data) {
   var rootEl = $('#panes_' + (currentMatchIndex + 1));
 
   // 若队伍过少,则显示无队伍
-  if(!data){
+  if (!data) {
     var noTeamEl = $('.j-no-team-origin').clone(true).removeClass('j-no-team-origin').addClass('j-battle-content');
     rootEl.find('.j-battle').append(noTeamEl);
+
+    // 弹出提示 
+    toastr.warning('比赛队伍过少，请先添加比赛队伍');
     return;
   }
 
@@ -102,6 +112,10 @@ function updateAddMatch(data) {
   $('.j-match-nav').append(matchListEl);
   $('.j-match-content').find('div').removeClass('active');
   $('.j-match-content').append(matchContentEl);
+}
+
+function teamExistedView(data) {
+  toastr.warning(data + '已存在');
 }
 
 // 將99以内的数字转化为汉字

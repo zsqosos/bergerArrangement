@@ -13,6 +13,7 @@ Match.prototype.addTeam = function (team) {
   // 判断添加名称是否已存在
   var isExisted = this.findTeam(team);
   if (isExisted !== -1) {
+    GlobalEvents.emit('teamExisted', team);
     return;
   }
   this.teams.push(team);
@@ -27,12 +28,13 @@ Match.prototype.addTeam = function (team) {
 Match.prototype.modifyTeam = function (team, newName) {
   var index = this.findTeam(team);
   if (index === -1) {
-    return;
+    return false;
   }
   // 判断新名称是否已存在
   var isExisted = this.findTeam(newName);
   if (isExisted !== -1) {
-    return;
+    GlobalEvents.emit('dataExisted', newName);
+    return false;
   }
   this.teams[index] = newName;
   // 派发modifyTeam事件,通知view层改变
@@ -40,13 +42,13 @@ Match.prototype.modifyTeam = function (team, newName) {
     index: index,
     newName: newName
   });
-  return this.teams;
+  return true;
 }
 
 Match.prototype.removeTeam = function (team) {
   var index = this.findTeam(team);
   if (index === -1) {
-    return;
+    return false;
   }
   this.teams.splice(index, 1);
   // 派发removeTeam事件,通知view层改变
@@ -54,7 +56,7 @@ Match.prototype.removeTeam = function (team) {
     index: index,
     teamLength: this.teams.length
   });
-  return this.teams;
+  return true;
 }
 
 Match.prototype.findTeam = function (team) {
@@ -89,7 +91,8 @@ Matches.prototype.getInitData = function () {
 Matches.prototype.addMatch = function (matchName) {
   var isExisted = this.findMatch(matchName);
   if (isExisted !== -1) {
-    return;
+    GlobalEvents.emit('dataExisted', matchName);
+    return false;
   }
   var newMatch = new Match(matchName);
   this.matchList.push(newMatch);
@@ -97,7 +100,7 @@ Matches.prototype.addMatch = function (matchName) {
     newMatch: newMatch,
     matchesLength: this.matchList.length
   })
-  return this.matchList;
+  return true;
 }
 
 Matches.prototype.findMatch = function (matchName) {

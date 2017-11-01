@@ -13,10 +13,12 @@ function HandleClick() {
     if (matchName.length === 0) {
       return
     }
-    matches.addMatch(matchName);
-    currentMatchIndex = matches.matchList.length - 1;
-    this.match = matches.matchList[currentMatchIndex];
-    this.updateBattle();
+    var addMatchResult = matches.addMatch(matchName);
+    if (addMatchResult) {
+      currentMatchIndex = matches.matchList.length - 1;
+      this.match = matches.matchList[currentMatchIndex];
+      this.updateBattle();
+    }
     // console.log(matches.matchList)
   }
 
@@ -28,6 +30,7 @@ function HandleClick() {
 
   this.modifyTeam = function () {
     var newName = $('.j-team-modify-input').val();
+    $('.j-team-modify-input').val('');
     this.match.modifyTeam(this.team, newName);
     // console.log(this.match.teams);
   }
@@ -39,7 +42,7 @@ function HandleClick() {
   this.addTeam = function () {
     // this.match = matches.matchList[currentMatchIndex];
     var team = $('.j-team-add-input').val();
-    $('.j-team-input').val('');
+    $('.j-team-add-input').val('');
     // 空字符未做处理
     if (team.length === 0) {
       return
